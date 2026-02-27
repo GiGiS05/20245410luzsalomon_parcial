@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\LeaveRequestStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +16,11 @@ class Leave_Requests extends Model
         'status',
         'student_id'
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'status'=>LeaveRequestStatus::class
+        ];
+    }
 }

@@ -22,7 +22,9 @@ class StoreLeave_RequestsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'date_solicited' => ['required','date'],
+            'motive' => ['required', 'string', 'max:1000'],
+            'student_id' => ['required', 'exists:students,id']
         ];
     }
 }

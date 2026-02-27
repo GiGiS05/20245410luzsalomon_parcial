@@ -11,7 +11,7 @@ class StoreStudentsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreStudentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'date_solici' => ['required', 'string', 'max:255'],
+            'badge' => ['required', 'string', 'max:8', 'unique:students,badge'],
+            'institutional_email' => ['required', 'email', 'unique:users,email'],
         ];
     }
 }

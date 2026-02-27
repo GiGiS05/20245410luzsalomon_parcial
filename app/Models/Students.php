@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StudentStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,4 +18,11 @@ class Students extends Model
         'available_permits',
         'state'
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'state'=>StudentStatus::class
+        ];
+    }
 }

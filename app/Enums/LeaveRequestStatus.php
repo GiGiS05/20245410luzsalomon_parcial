@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Enums;
-enum StudentStatus: string
+enum LeaveRequestStatus: string
 {
     case PENDING ='pendiente';
     case APPROVED = 'aprobada';
