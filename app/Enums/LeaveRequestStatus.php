@@ -3,7 +3,7 @@
 namespace App\Enums;
 enum LeaveRequestStatus: string
 {
-    case PENDING ='pendiente';
-    case APPROVED = 'aprobada';
-    case CANCELED = 'cancelada';
+    case PENDING ='pending';
+    case APPROVED = 'approved';
+    case CANCELED = 'cancelled';
 }

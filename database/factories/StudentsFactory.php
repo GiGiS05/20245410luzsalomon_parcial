@@ -21,7 +21,7 @@ class StudentsFactory extends Factory
             'badge' => strtoupper($this->faker->bothify('??######')),
             'institutional_email' => $this->faker->unique()->safeEmail(),
             'available_permits' => $this->faker->numberBetween(0, 4),
-            'state' => $this->faker->randomElement(['activa', 'inactiva']),
+            'state' => $this->faker->randomElement(['active', 'inactive']),
         ];
     }
 }

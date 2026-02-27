@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('badge')->unique()->after('full_name');
             $table->string('institutional_email')->unique()->after('badge');
             $table->integer('available_permits')->default(3)->after('institutional_email');
-            $table->enum('state', ['activa', 'inactiva'])->default('activa')->after('available_permits');
+            $table->enum('state', ['active', 'inactive'])->default('active')->after('available_permits');
         });
     }
 

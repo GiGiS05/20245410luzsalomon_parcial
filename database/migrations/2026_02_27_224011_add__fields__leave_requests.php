@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('leave__requests', function (Blueprint $table) {
             $table->date('date_solicited')->after('id');
             $table->string('motive')->after('date_solicited');
-            $table->enum('status', ['pendiente', 'aprobada', 'cancelada'])->default('pendiente')->after('motive');
+            $table->enum('status', ['pending', 'approved', 'cancelled'])->default('pending')->after('motive');
             $table->unsignedBigInteger('student_id')->after('status');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
