@@ -11,7 +11,7 @@ class StudentsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('students')->insert(
+        DB::table('students')->insert([
             [
                 'full_name' => 'John Doe',
                 'badge' => 'JD123456',
@@ -82,6 +82,6 @@ class StudentsSeeder extends Seeder
                 'available_permits' => 3,
                 'state' => 'activa'
             ]
-        );
+        ]);
     }
 }
