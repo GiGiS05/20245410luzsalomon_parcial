@@ -24,7 +24,8 @@ class StoreLeave_RequestsRequest extends FormRequest
         return [
             'date_solicited' => ['required','date'],
             'motive' => ['required', 'string', 'max:1000'],
-            'student_id' => ['required', 'exists:students,id']
+            'student_id' => ['required', 'exists:students,id'],
+            'status' => ['required', 'in:pending,approved,cancelled'],
         ];
     }
 }

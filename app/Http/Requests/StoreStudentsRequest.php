@@ -22,9 +22,11 @@ class StoreStudentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_solici' => ['required', 'string', 'max:255'],
+            'full_name' => ['required', 'string', 'max:255'],
             'badge' => ['required', 'string', 'max:8', 'unique:students,badge'],
-            'institutional_email' => ['required', 'email', 'unique:users,email'],
+            'institutional_email' => ['required', 'email', 'unique:students,institutional_email'],
+            'available_permits' => ['required', 'integer'],
+            'state' => ['required', 'in:active,inactive'],
         ];
     }
 }
