@@ -17,7 +17,11 @@ class StudentsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'full_name' => $this->faker->name(),
+            'badge' => strtoupper($this->faker->bothify('??######')),
+            'institutional_email' => $this->faker->unique()->safeEmail(),
+            'available_permits' => $this->faker->numberBetween(0, 4),
+            'state' => $this->faker->randomElement(['activa', 'inactiva']),
         ];
     }
 }
