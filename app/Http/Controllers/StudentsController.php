@@ -5,15 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Students;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Http\Requests\UpdateStudentsRequest;
-
+use App\Http\Resources\StudentResource;
+use Illuminate\Http\Request;
 class StudentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $students = Students::query()
+        ->when($request->has('badge'), 
+            fn ($query)=>$query->where('badge', $request->input('badge')))
+        
+            ->when($request->has('state'), 
+            fn ($query)=>$query->where('state', $request->input('state')))
+
+        ->get();        
+        
+        return StudentResource::collection($students);
     }
 
     /**

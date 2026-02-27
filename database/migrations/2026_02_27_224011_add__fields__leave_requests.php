@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('leave_requests', function (Blueprint $table) {
+        Schema::table('leave__requests', function (Blueprint $table) {
             $table->date('date_solicited')->after('id');
             $table->string('motive')->after('date_solicited');
             $table->enum('status', ['pendiente', 'aprobada', 'cancelada'])->default('pendiente')->after('motive');
