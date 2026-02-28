@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Leave_Requests;
 use App\Http\Requests\StoreLeave_RequestsRequest;
 use App\Http\Requests\UpdateLeave_RequestsRequest;
+use App\Http\Resources\LeaveRequestsResource;
+use App\Models\Students;
 
 class LeaveRequestsController extends Controller
 {
@@ -19,9 +21,24 @@ class LeaveRequestsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(StoreLeave_RequestsRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['date_solicited'] = now();
+        $data['status'] = 'pending';
+
+        //recover the amount of permits the studen has available
+        $student = Students::find($data['student_id']);
+        $permits_available=$student->available_permits;
+
+
+        if ($permits_available<0){
+            return response()->json(['error' => 'Student has no available permits'], 422);
+        }
+
+        $user = Leave_Requests::create($data);
+        
+        return response()->json(LeaveRequestsResource::make($user), 201);
     }
 
     /**
