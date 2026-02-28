@@ -21,24 +21,9 @@ class LeaveRequestsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(StoreLeave_RequestsRequest $request)
+    public function create()
     {
-        $data = $request->validated();
-        $data['date_solicited'] = now();
-        $data['status'] = 'pending';
-
-        //recover the amount of permits the studen has available
-        $student = Students::find($data['student_id']);
-        $permits_available=$student->available_permits;
-
-
-        if ($permits_available<0){
-            return response()->json(['error' => 'Studiante no tiene permisos disponibles'], 422);
-        }
-
-        $permit = Leave_Requests::create($data);
         
-        return response()->json(LeaveRequestsResource::make($permit), 201);
     }
 
     /**
@@ -46,7 +31,27 @@ class LeaveRequestsController extends Controller
      */
     public function store(StoreLeave_RequestsRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['date_solicited'] = now();
+        $data['status'] = 'pending';
+
+        //recover the amount of permits the studen has available
+        $student = Students::find($data['student_id']);
+        
+        if($student['state']!='active'){
+            return response()->json(['error' => 'Studiante no está activo'], 400);
+        }
+
+        $permits_available=$student->available_permits;
+
+
+        if ($permits_available<=0){
+            return response()->json(['error' => 'Studiante no tiene permisos disponibles'], 422);
+        }
+
+        $permit = Leave_Requests::create($data);
+        
+        return response()->json(LeaveRequestsResource::make($permit), 201);
     }
 
     /**
