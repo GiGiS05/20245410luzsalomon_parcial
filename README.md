@@ -6,6 +6,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## Instructions on how to install the project
+Clone the repository within your computer.
+
+If you don't already have the laravel dependencies, install them
+
+
+migrate the seeder
+php artisan mgirate --seed
+
+Get uses the badge (carnet) and state (estado)
+
+
+
+
+
 
 ## About Laravel
 
