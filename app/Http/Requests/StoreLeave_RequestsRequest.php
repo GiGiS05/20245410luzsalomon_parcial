@@ -11,7 +11,7 @@ class StoreLeave_RequestsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +22,10 @@ class StoreLeave_RequestsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_solicited' => ['required','date'],
-            'motive' => ['required', 'string', 'max:1000'],
+            'date_solicited' => ['date'],
+            'motive' => ['required', 'string', 'max:500'],
             'student_id' => ['required', 'exists:students,id'],
-            'status' => ['required', 'in:pending,approved,cancelled'],
+            'status' => ['in:pending,approved,cancelled'],
         ];
     }
 }

@@ -14,6 +14,13 @@ class LeaveRequestsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'=>$this->id,
+            'date'=>$this->date_solicited,
+            'motive'=>$this->motive,
+            'status'=>$this->status,
+            'student_id'=>$this->student_id,
+            'created_at'=>$this->created_at
+            ];
     }
 }

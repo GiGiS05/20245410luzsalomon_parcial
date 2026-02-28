@@ -33,12 +33,12 @@ class LeaveRequestsController extends Controller
 
 
         if ($permits_available<0){
-            return response()->json(['error' => 'Student has no available permits'], 422);
+            return response()->json(['error' => 'Studiante no tiene permisos disponibles'], 422);
         }
 
-        $user = Leave_Requests::create($data);
+        $permit = Leave_Requests::create($data);
         
-        return response()->json(LeaveRequestsResource::make($user), 201);
+        return response()->json(LeaveRequestsResource::make($permit), 201);
     }
 
     /**

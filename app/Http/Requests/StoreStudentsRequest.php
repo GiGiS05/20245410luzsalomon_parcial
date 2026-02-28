@@ -25,8 +25,8 @@ class StoreStudentsRequest extends FormRequest
             'full_name' => ['required', 'string', 'max:255'],
             'badge' => ['required', 'string', 'max:8', 'unique:students,badge'],
             'institutional_email' => ['required', 'email', 'unique:students,institutional_email'],
-            'available_permits' => ['required', 'integer'],
-            'state' => ['required', 'in:active,inactive'],
+            'available_permits' => ['integer'],
+            'state' => ['in:active,inactive'],
         ];
     }
 }
